@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option go_package = "github.com/shastrax/funny-turtle/proto";
+
+package proto;
+
+//
+service Turtle {
+  rpc SelectNote(SelectNoteRequest) returns (SelectNoteResponse) {}
+  rpc SubmitNote(SubmitNoteRequest) returns (SubmitNoteResponse) {}
+}
+
+//
+message SelectNoteRequest {
+  string client_id = 1; // requestor
+  string message = 2;   // command
+}
+
+//
+message SelectNoteResponse {
+  string client_id = 1;  // requestor
+  string receipt_id = 2; // response receipt
+}
+
+//
+message SubmitNoteRequest {
+  string client_id = 1; // requestor
+}
+
+//
+message SubmitNoteResponse {
+  string client_id = 1; // requestor
+}
