@@ -1,13 +1,26 @@
 syntax = "proto3";
 
-option go_package = "github.com/shastrax/funny-turtle/proto";
+option go_package = "github.com/shastrax/funny-iguana/proto";
 
 package proto;
 
 //
 service Turtle {
-  rpc SelectNote(SelectNoteRequest) returns (SelectNoteResponse) {}
-  rpc SubmitNote(SubmitNoteRequest) returns (SubmitNoteResponse) {}
+    rpc Ping(PingRequest) returns (PingResponse) {}
+    rpc SelectNote(SelectNoteRequest) returns (SelectNoteResponse) {}
+    rpc SubmitNote(SubmitNoteRequest) returns (SubmitNoteResponse) {}
+    rpc SubmitVisitor(SubmitVisitorRequest) returns (SubmitVisitorResponse) {}
+}
+
+//
+message PingRequest {
+    string source = 1;
+    int64 time_stamp = 2;
+}
+
+//
+message PingResponse {
+    string status = 1;
 }
 
 //
@@ -30,4 +43,16 @@ message SubmitNoteRequest {
 //
 message SubmitNoteResponse {
   string client_id = 1; // requestor
+}
+
+//
+message SubmitVisitorRequest {
+    string address = 1;
+    int64 time_stamp = 2;
+    string url = 3;
+}
+
+//
+message SubmitVisitorResponse {
+    string status = 1;
 }

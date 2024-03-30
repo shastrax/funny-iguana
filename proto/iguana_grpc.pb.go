@@ -19,16 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Turtle_SelectNote_FullMethodName = "/proto.Turtle/SelectNote"
-	Turtle_SubmitNote_FullMethodName = "/proto.Turtle/SubmitNote"
+	Turtle_Ping_FullMethodName          = "/proto.Turtle/Ping"
+	Turtle_SelectNote_FullMethodName    = "/proto.Turtle/SelectNote"
+	Turtle_SubmitNote_FullMethodName    = "/proto.Turtle/SubmitNote"
+	Turtle_SubmitVisitor_FullMethodName = "/proto.Turtle/SubmitVisitor"
 )
 
 // TurtleClient is the client API for Turtle service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TurtleClient interface {
+	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error)
 	SelectNote(ctx context.Context, in *SelectNoteRequest, opts ...grpc.CallOption) (*SelectNoteResponse, error)
 	SubmitNote(ctx context.Context, in *SubmitNoteRequest, opts ...grpc.CallOption) (*SubmitNoteResponse, error)
+	SubmitVisitor(ctx context.Context, in *SubmitVisitorRequest, opts ...grpc.CallOption) (*SubmitVisitorResponse, error)
 }
 
 type turtleClient struct {
@@ -37,6 +41,15 @@ type turtleClient struct {
 
 func NewTurtleClient(cc grpc.ClientConnInterface) TurtleClient {
 	return &turtleClient{cc}
+}
+
+func (c *turtleClient) Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error) {
+	out := new(PingResponse)
+	err := c.cc.Invoke(ctx, Turtle_Ping_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *turtleClient) SelectNote(ctx context.Context, in *SelectNoteRequest, opts ...grpc.CallOption) (*SelectNoteResponse, error) {
@@ -57,12 +70,23 @@ func (c *turtleClient) SubmitNote(ctx context.Context, in *SubmitNoteRequest, op
 	return out, nil
 }
 
+func (c *turtleClient) SubmitVisitor(ctx context.Context, in *SubmitVisitorRequest, opts ...grpc.CallOption) (*SubmitVisitorResponse, error) {
+	out := new(SubmitVisitorResponse)
+	err := c.cc.Invoke(ctx, Turtle_SubmitVisitor_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TurtleServer is the server API for Turtle service.
 // All implementations must embed UnimplementedTurtleServer
 // for forward compatibility
 type TurtleServer interface {
+	Ping(context.Context, *PingRequest) (*PingResponse, error)
 	SelectNote(context.Context, *SelectNoteRequest) (*SelectNoteResponse, error)
 	SubmitNote(context.Context, *SubmitNoteRequest) (*SubmitNoteResponse, error)
+	SubmitVisitor(context.Context, *SubmitVisitorRequest) (*SubmitVisitorResponse, error)
 	mustEmbedUnimplementedTurtleServer()
 }
 
@@ -70,11 +94,17 @@ type TurtleServer interface {
 type UnimplementedTurtleServer struct {
 }
 
+func (UnimplementedTurtleServer) Ping(context.Context, *PingRequest) (*PingResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+}
 func (UnimplementedTurtleServer) SelectNote(context.Context, *SelectNoteRequest) (*SelectNoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SelectNote not implemented")
 }
 func (UnimplementedTurtleServer) SubmitNote(context.Context, *SubmitNoteRequest) (*SubmitNoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitNote not implemented")
+}
+func (UnimplementedTurtleServer) SubmitVisitor(context.Context, *SubmitVisitorRequest) (*SubmitVisitorResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubmitVisitor not implemented")
 }
 func (UnimplementedTurtleServer) mustEmbedUnimplementedTurtleServer() {}
 
@@ -87,6 +117,24 @@ type UnsafeTurtleServer interface {
 
 func RegisterTurtleServer(s grpc.ServiceRegistrar, srv TurtleServer) {
 	s.RegisterService(&Turtle_ServiceDesc, srv)
+}
+
+func _Turtle_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PingRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TurtleServer).Ping(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Turtle_Ping_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TurtleServer).Ping(ctx, req.(*PingRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Turtle_SelectNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -125,6 +173,24 @@ func _Turtle_SubmitNote_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Turtle_SubmitVisitor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubmitVisitorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TurtleServer).SubmitVisitor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Turtle_SubmitVisitor_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TurtleServer).SubmitVisitor(ctx, req.(*SubmitVisitorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Turtle_ServiceDesc is the grpc.ServiceDesc for Turtle service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -133,12 +199,20 @@ var Turtle_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TurtleServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "Ping",
+			Handler:    _Turtle_Ping_Handler,
+		},
+		{
 			MethodName: "SelectNote",
 			Handler:    _Turtle_SelectNote_Handler,
 		},
 		{
 			MethodName: "SubmitNote",
 			Handler:    _Turtle_SubmitNote_Handler,
+		},
+		{
+			MethodName: "SubmitVisitor",
+			Handler:    _Turtle_SubmitVisitor_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
