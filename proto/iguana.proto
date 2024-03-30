@@ -5,7 +5,7 @@ option go_package = "github.com/shastrax/funny-iguana/proto";
 package proto;
 
 //
-service Turtle {
+service Iguana {
     rpc Ping(PingRequest) returns (PingResponse) {}
     rpc SelectNote(SelectNoteRequest) returns (SelectNoteResponse) {}
     rpc SubmitNote(SubmitNoteRequest) returns (SubmitNoteResponse) {}

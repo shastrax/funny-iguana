@@ -19,200 +19,200 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Turtle_Ping_FullMethodName          = "/proto.Turtle/Ping"
-	Turtle_SelectNote_FullMethodName    = "/proto.Turtle/SelectNote"
-	Turtle_SubmitNote_FullMethodName    = "/proto.Turtle/SubmitNote"
-	Turtle_SubmitVisitor_FullMethodName = "/proto.Turtle/SubmitVisitor"
+	Iguana_Ping_FullMethodName          = "/proto.Iguana/Ping"
+	Iguana_SelectNote_FullMethodName    = "/proto.Iguana/SelectNote"
+	Iguana_SubmitNote_FullMethodName    = "/proto.Iguana/SubmitNote"
+	Iguana_SubmitVisitor_FullMethodName = "/proto.Iguana/SubmitVisitor"
 )
 
-// TurtleClient is the client API for Turtle service.
+// IguanaClient is the client API for Iguana service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TurtleClient interface {
+type IguanaClient interface {
 	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error)
 	SelectNote(ctx context.Context, in *SelectNoteRequest, opts ...grpc.CallOption) (*SelectNoteResponse, error)
 	SubmitNote(ctx context.Context, in *SubmitNoteRequest, opts ...grpc.CallOption) (*SubmitNoteResponse, error)
 	SubmitVisitor(ctx context.Context, in *SubmitVisitorRequest, opts ...grpc.CallOption) (*SubmitVisitorResponse, error)
 }
 
-type turtleClient struct {
+type iguanaClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewTurtleClient(cc grpc.ClientConnInterface) TurtleClient {
-	return &turtleClient{cc}
+func NewIguanaClient(cc grpc.ClientConnInterface) IguanaClient {
+	return &iguanaClient{cc}
 }
 
-func (c *turtleClient) Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error) {
+func (c *iguanaClient) Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error) {
 	out := new(PingResponse)
-	err := c.cc.Invoke(ctx, Turtle_Ping_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Iguana_Ping_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *turtleClient) SelectNote(ctx context.Context, in *SelectNoteRequest, opts ...grpc.CallOption) (*SelectNoteResponse, error) {
+func (c *iguanaClient) SelectNote(ctx context.Context, in *SelectNoteRequest, opts ...grpc.CallOption) (*SelectNoteResponse, error) {
 	out := new(SelectNoteResponse)
-	err := c.cc.Invoke(ctx, Turtle_SelectNote_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Iguana_SelectNote_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *turtleClient) SubmitNote(ctx context.Context, in *SubmitNoteRequest, opts ...grpc.CallOption) (*SubmitNoteResponse, error) {
+func (c *iguanaClient) SubmitNote(ctx context.Context, in *SubmitNoteRequest, opts ...grpc.CallOption) (*SubmitNoteResponse, error) {
 	out := new(SubmitNoteResponse)
-	err := c.cc.Invoke(ctx, Turtle_SubmitNote_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Iguana_SubmitNote_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *turtleClient) SubmitVisitor(ctx context.Context, in *SubmitVisitorRequest, opts ...grpc.CallOption) (*SubmitVisitorResponse, error) {
+func (c *iguanaClient) SubmitVisitor(ctx context.Context, in *SubmitVisitorRequest, opts ...grpc.CallOption) (*SubmitVisitorResponse, error) {
 	out := new(SubmitVisitorResponse)
-	err := c.cc.Invoke(ctx, Turtle_SubmitVisitor_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, Iguana_SubmitVisitor_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// TurtleServer is the server API for Turtle service.
-// All implementations must embed UnimplementedTurtleServer
+// IguanaServer is the server API for Iguana service.
+// All implementations must embed UnimplementedIguanaServer
 // for forward compatibility
-type TurtleServer interface {
+type IguanaServer interface {
 	Ping(context.Context, *PingRequest) (*PingResponse, error)
 	SelectNote(context.Context, *SelectNoteRequest) (*SelectNoteResponse, error)
 	SubmitNote(context.Context, *SubmitNoteRequest) (*SubmitNoteResponse, error)
 	SubmitVisitor(context.Context, *SubmitVisitorRequest) (*SubmitVisitorResponse, error)
-	mustEmbedUnimplementedTurtleServer()
+	mustEmbedUnimplementedIguanaServer()
 }
 
-// UnimplementedTurtleServer must be embedded to have forward compatible implementations.
-type UnimplementedTurtleServer struct {
+// UnimplementedIguanaServer must be embedded to have forward compatible implementations.
+type UnimplementedIguanaServer struct {
 }
 
-func (UnimplementedTurtleServer) Ping(context.Context, *PingRequest) (*PingResponse, error) {
+func (UnimplementedIguanaServer) Ping(context.Context, *PingRequest) (*PingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
 }
-func (UnimplementedTurtleServer) SelectNote(context.Context, *SelectNoteRequest) (*SelectNoteResponse, error) {
+func (UnimplementedIguanaServer) SelectNote(context.Context, *SelectNoteRequest) (*SelectNoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SelectNote not implemented")
 }
-func (UnimplementedTurtleServer) SubmitNote(context.Context, *SubmitNoteRequest) (*SubmitNoteResponse, error) {
+func (UnimplementedIguanaServer) SubmitNote(context.Context, *SubmitNoteRequest) (*SubmitNoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitNote not implemented")
 }
-func (UnimplementedTurtleServer) SubmitVisitor(context.Context, *SubmitVisitorRequest) (*SubmitVisitorResponse, error) {
+func (UnimplementedIguanaServer) SubmitVisitor(context.Context, *SubmitVisitorRequest) (*SubmitVisitorResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitVisitor not implemented")
 }
-func (UnimplementedTurtleServer) mustEmbedUnimplementedTurtleServer() {}
+func (UnimplementedIguanaServer) mustEmbedUnimplementedIguanaServer() {}
 
-// UnsafeTurtleServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TurtleServer will
+// UnsafeIguanaServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to IguanaServer will
 // result in compilation errors.
-type UnsafeTurtleServer interface {
-	mustEmbedUnimplementedTurtleServer()
+type UnsafeIguanaServer interface {
+	mustEmbedUnimplementedIguanaServer()
 }
 
-func RegisterTurtleServer(s grpc.ServiceRegistrar, srv TurtleServer) {
-	s.RegisterService(&Turtle_ServiceDesc, srv)
+func RegisterIguanaServer(s grpc.ServiceRegistrar, srv IguanaServer) {
+	s.RegisterService(&Iguana_ServiceDesc, srv)
 }
 
-func _Turtle_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Iguana_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PingRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TurtleServer).Ping(ctx, in)
+		return srv.(IguanaServer).Ping(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Turtle_Ping_FullMethodName,
+		FullMethod: Iguana_Ping_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TurtleServer).Ping(ctx, req.(*PingRequest))
+		return srv.(IguanaServer).Ping(ctx, req.(*PingRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Turtle_SelectNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Iguana_SelectNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SelectNoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TurtleServer).SelectNote(ctx, in)
+		return srv.(IguanaServer).SelectNote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Turtle_SelectNote_FullMethodName,
+		FullMethod: Iguana_SelectNote_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TurtleServer).SelectNote(ctx, req.(*SelectNoteRequest))
+		return srv.(IguanaServer).SelectNote(ctx, req.(*SelectNoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Turtle_SubmitNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Iguana_SubmitNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SubmitNoteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TurtleServer).SubmitNote(ctx, in)
+		return srv.(IguanaServer).SubmitNote(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Turtle_SubmitNote_FullMethodName,
+		FullMethod: Iguana_SubmitNote_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TurtleServer).SubmitNote(ctx, req.(*SubmitNoteRequest))
+		return srv.(IguanaServer).SubmitNote(ctx, req.(*SubmitNoteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Turtle_SubmitVisitor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Iguana_SubmitVisitor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SubmitVisitorRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TurtleServer).SubmitVisitor(ctx, in)
+		return srv.(IguanaServer).SubmitVisitor(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Turtle_SubmitVisitor_FullMethodName,
+		FullMethod: Iguana_SubmitVisitor_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TurtleServer).SubmitVisitor(ctx, req.(*SubmitVisitorRequest))
+		return srv.(IguanaServer).SubmitVisitor(ctx, req.(*SubmitVisitorRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Turtle_ServiceDesc is the grpc.ServiceDesc for Turtle service.
+// Iguana_ServiceDesc is the grpc.ServiceDesc for Iguana service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Turtle_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.Turtle",
-	HandlerType: (*TurtleServer)(nil),
+var Iguana_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.Iguana",
+	HandlerType: (*IguanaServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Ping",
-			Handler:    _Turtle_Ping_Handler,
+			Handler:    _Iguana_Ping_Handler,
 		},
 		{
 			MethodName: "SelectNote",
-			Handler:    _Turtle_SelectNote_Handler,
+			Handler:    _Iguana_SelectNote_Handler,
 		},
 		{
 			MethodName: "SubmitNote",
-			Handler:    _Turtle_SubmitNote_Handler,
+			Handler:    _Iguana_SubmitNote_Handler,
 		},
 		{
 			MethodName: "SubmitVisitor",
-			Handler:    _Turtle_SubmitVisitor_Handler,
+			Handler:    _Iguana_SubmitVisitor_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
