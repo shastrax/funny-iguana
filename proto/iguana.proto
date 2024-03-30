@@ -25,24 +25,24 @@ message PingResponse {
 
 //
 message SelectNoteRequest {
-  string client_id = 1; // requestor
-  string message = 2;   // command
+    string client_id = 1;
+    string message = 2;
 }
 
 //
 message SelectNoteResponse {
-  string client_id = 1;  // requestor
-  string receipt_id = 2; // response receipt
+    string client_id = 1;
+    string message = 2;
 }
 
 //
 message SubmitNoteRequest {
-  string client_id = 1; // requestor
+    string client_id = 1; // requestor
 }
 
 //
 message SubmitNoteResponse {
-  string client_id = 1; // requestor
+    string client_id = 1; // requestor
 }
 
 //
