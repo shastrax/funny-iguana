@@ -6,10 +6,23 @@ package proto;
 
 //
 service Iguana {
+    rpc CognitoEvent(CognitoEventRequest) returns (CognitoEventResponse) {}
     rpc Ping(PingRequest) returns (PingResponse) {}
     rpc SelectNote(SelectNoteRequest) returns (SelectNoteResponse) {}
     rpc SubmitNote(SubmitNoteRequest) returns (SubmitNoteResponse) {}
-    rpc SubmitVisitor(SubmitVisitorRequest) returns (SubmitVisitorResponse) {}
+    rpc VisitorEvent(VisitorEventRequest) returns (VisitorEventResponse) {}
+}
+
+//
+message CognitoEventRequest {
+    string user_mail = 1;
+    string user_name = 2;
+    string user_sub = 3;
+}
+
+//
+message CognitoEventResponse {
+    string status = 1;
 }
 
 //
@@ -46,13 +59,13 @@ message SubmitNoteResponse {
 }
 
 //
-message SubmitVisitorRequest {
+message VisitorEventRequest {
     string address = 1;
     int64 time_stamp = 2;
     string url = 3;
 }
 
 //
-message SubmitVisitorResponse {
+message VisitorEventResponse {
     string status = 1;
 }

@@ -19,20 +19,22 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Iguana_Ping_FullMethodName          = "/proto.Iguana/Ping"
-	Iguana_SelectNote_FullMethodName    = "/proto.Iguana/SelectNote"
-	Iguana_SubmitNote_FullMethodName    = "/proto.Iguana/SubmitNote"
-	Iguana_SubmitVisitor_FullMethodName = "/proto.Iguana/SubmitVisitor"
+	Iguana_CognitoEvent_FullMethodName = "/proto.Iguana/CognitoEvent"
+	Iguana_Ping_FullMethodName         = "/proto.Iguana/Ping"
+	Iguana_SelectNote_FullMethodName   = "/proto.Iguana/SelectNote"
+	Iguana_SubmitNote_FullMethodName   = "/proto.Iguana/SubmitNote"
+	Iguana_VisitorEvent_FullMethodName = "/proto.Iguana/VisitorEvent"
 )
 
 // IguanaClient is the client API for Iguana service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type IguanaClient interface {
+	CognitoEvent(ctx context.Context, in *CognitoEventRequest, opts ...grpc.CallOption) (*CognitoEventResponse, error)
 	Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error)
 	SelectNote(ctx context.Context, in *SelectNoteRequest, opts ...grpc.CallOption) (*SelectNoteResponse, error)
 	SubmitNote(ctx context.Context, in *SubmitNoteRequest, opts ...grpc.CallOption) (*SubmitNoteResponse, error)
-	SubmitVisitor(ctx context.Context, in *SubmitVisitorRequest, opts ...grpc.CallOption) (*SubmitVisitorResponse, error)
+	VisitorEvent(ctx context.Context, in *VisitorEventRequest, opts ...grpc.CallOption) (*VisitorEventResponse, error)
 }
 
 type iguanaClient struct {
@@ -41,6 +43,15 @@ type iguanaClient struct {
 
 func NewIguanaClient(cc grpc.ClientConnInterface) IguanaClient {
 	return &iguanaClient{cc}
+}
+
+func (c *iguanaClient) CognitoEvent(ctx context.Context, in *CognitoEventRequest, opts ...grpc.CallOption) (*CognitoEventResponse, error) {
+	out := new(CognitoEventResponse)
+	err := c.cc.Invoke(ctx, Iguana_CognitoEvent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *iguanaClient) Ping(ctx context.Context, in *PingRequest, opts ...grpc.CallOption) (*PingResponse, error) {
@@ -70,9 +81,9 @@ func (c *iguanaClient) SubmitNote(ctx context.Context, in *SubmitNoteRequest, op
 	return out, nil
 }
 
-func (c *iguanaClient) SubmitVisitor(ctx context.Context, in *SubmitVisitorRequest, opts ...grpc.CallOption) (*SubmitVisitorResponse, error) {
-	out := new(SubmitVisitorResponse)
-	err := c.cc.Invoke(ctx, Iguana_SubmitVisitor_FullMethodName, in, out, opts...)
+func (c *iguanaClient) VisitorEvent(ctx context.Context, in *VisitorEventRequest, opts ...grpc.CallOption) (*VisitorEventResponse, error) {
+	out := new(VisitorEventResponse)
+	err := c.cc.Invoke(ctx, Iguana_VisitorEvent_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,10 +94,11 @@ func (c *iguanaClient) SubmitVisitor(ctx context.Context, in *SubmitVisitorReque
 // All implementations must embed UnimplementedIguanaServer
 // for forward compatibility
 type IguanaServer interface {
+	CognitoEvent(context.Context, *CognitoEventRequest) (*CognitoEventResponse, error)
 	Ping(context.Context, *PingRequest) (*PingResponse, error)
 	SelectNote(context.Context, *SelectNoteRequest) (*SelectNoteResponse, error)
 	SubmitNote(context.Context, *SubmitNoteRequest) (*SubmitNoteResponse, error)
-	SubmitVisitor(context.Context, *SubmitVisitorRequest) (*SubmitVisitorResponse, error)
+	VisitorEvent(context.Context, *VisitorEventRequest) (*VisitorEventResponse, error)
 	mustEmbedUnimplementedIguanaServer()
 }
 
@@ -94,6 +106,9 @@ type IguanaServer interface {
 type UnimplementedIguanaServer struct {
 }
 
+func (UnimplementedIguanaServer) CognitoEvent(context.Context, *CognitoEventRequest) (*CognitoEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CognitoEvent not implemented")
+}
 func (UnimplementedIguanaServer) Ping(context.Context, *PingRequest) (*PingResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
 }
@@ -103,8 +118,8 @@ func (UnimplementedIguanaServer) SelectNote(context.Context, *SelectNoteRequest)
 func (UnimplementedIguanaServer) SubmitNote(context.Context, *SubmitNoteRequest) (*SubmitNoteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitNote not implemented")
 }
-func (UnimplementedIguanaServer) SubmitVisitor(context.Context, *SubmitVisitorRequest) (*SubmitVisitorResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SubmitVisitor not implemented")
+func (UnimplementedIguanaServer) VisitorEvent(context.Context, *VisitorEventRequest) (*VisitorEventResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VisitorEvent not implemented")
 }
 func (UnimplementedIguanaServer) mustEmbedUnimplementedIguanaServer() {}
 
@@ -117,6 +132,24 @@ type UnsafeIguanaServer interface {
 
 func RegisterIguanaServer(s grpc.ServiceRegistrar, srv IguanaServer) {
 	s.RegisterService(&Iguana_ServiceDesc, srv)
+}
+
+func _Iguana_CognitoEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CognitoEventRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IguanaServer).CognitoEvent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Iguana_CognitoEvent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IguanaServer).CognitoEvent(ctx, req.(*CognitoEventRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Iguana_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -173,20 +206,20 @@ func _Iguana_SubmitNote_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Iguana_SubmitVisitor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SubmitVisitorRequest)
+func _Iguana_VisitorEvent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VisitorEventRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(IguanaServer).SubmitVisitor(ctx, in)
+		return srv.(IguanaServer).VisitorEvent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Iguana_SubmitVisitor_FullMethodName,
+		FullMethod: Iguana_VisitorEvent_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IguanaServer).SubmitVisitor(ctx, req.(*SubmitVisitorRequest))
+		return srv.(IguanaServer).VisitorEvent(ctx, req.(*VisitorEventRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -198,6 +231,10 @@ var Iguana_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "proto.Iguana",
 	HandlerType: (*IguanaServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CognitoEvent",
+			Handler:    _Iguana_CognitoEvent_Handler,
+		},
 		{
 			MethodName: "Ping",
 			Handler:    _Iguana_Ping_Handler,
@@ -211,8 +248,8 @@ var Iguana_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Iguana_SubmitNote_Handler,
 		},
 		{
-			MethodName: "SubmitVisitor",
-			Handler:    _Iguana_SubmitVisitor_Handler,
+			MethodName: "VisitorEvent",
+			Handler:    _Iguana_VisitorEvent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
