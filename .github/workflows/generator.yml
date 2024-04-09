@@ -1,0 +1,17 @@
+name: proto
+
+on: [push]
+#  push:
+#    branches:
+#    - main
+
+jobs:
+  proto_checks:
+    name: proto lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+    
+      - uses: arduino/setup-protoc@v3
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
