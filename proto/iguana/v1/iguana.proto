@@ -2,10 +2,10 @@ syntax = "proto3";
 
 option go_package = "github.com/shastrax/funny-iguana/proto";
 
-package proto;
+package iguana.v1;
 
 //
-service Iguana {
+service IguanaService {
     rpc CognitoEvent(CognitoEventRequest) returns (CognitoEventResponse) {}
     rpc Ping(PingRequest) returns (PingResponse) {}
     rpc SelectNote(SelectNoteRequest) returns (SelectNoteResponse) {}
