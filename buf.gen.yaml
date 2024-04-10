@@ -2,7 +2,7 @@ version: v1
 managed:
   enabled: true
   go_package_prefix:
-    default: github.com/shastrax/funny-iguana/proto
+    default: github.com/shastrax/funny-iguana/gen
 plugins:
   - plugin: buf.build/protocolbuffers/go
     out: gen
