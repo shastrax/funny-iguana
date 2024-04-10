@@ -10,7 +10,7 @@ import (
 	context "context"
 	errors "errors"
 	connect_go "github.com/bufbuild/connect-go"
-	v1 "github.com/shastrax/funny-iguana/proto/iguana/v1"
+	v1 "github.com/shastrax/funny-iguana/gen/iguana/v1"
 	http "net/http"
 	strings "strings"
 )

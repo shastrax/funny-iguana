@@ -8,5 +8,8 @@ Project Funny gRPC
 ```buf generate proto```
 ```buf lint proto```
 
+## go application
+```go get github.com/shastrax/funny-iguana/proto/iguana/v1```
+
 ## github action 
 TBD
