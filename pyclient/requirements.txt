@@ -1,4 +1,4 @@
 grpcio==1.62.1
-grpcio-tools==1.62.1
-protobuf==4.25.3
-setuptools==69.2.0
+guycole_iguana_v1_grpc_python==1.62.1.1.20240411040341+bddf965c13c0
+guycole_iguana_v1_protocolbuffers_python==26.1.0.1.20240411040341+bddf965c13c0
+protobuf==5.26.1

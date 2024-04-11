@@ -4,12 +4,12 @@ managed:
   go_package_prefix:
     default: github.com/shastrax/funny-iguana/gen
 plugins:
+  - plugin: buf.build/connectrpc/go:v1.16.0
+    out: gen
+    opt: paths=source_relative
   - plugin: buf.build/protocolbuffers/go
     out: gen
     opt: paths=source_relative
-#  - plugin: buf.build/bufbuild/connect-go
-#    out: gen
-#    opt: paths=source_relative
   - plugin: buf.build/grpc/python:v1.62.1
     out: gen
   - plugin: buf.build/protocolbuffers/python
