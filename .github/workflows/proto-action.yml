@@ -19,7 +19,10 @@ jobs:
       - run: buf --version
 
       - name: lint
-        run: buf lint   
+        run: buf lint proto
+
+      - name: generate
+        run: buf generate proto
 
 #      - uses: arduino/setup-protoc@v3.0.0
 #        with:
