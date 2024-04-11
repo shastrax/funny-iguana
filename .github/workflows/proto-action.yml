@@ -1,9 +1,9 @@
 name: proto-action
 
-on: [push]
-#  push:
-#    branches:
-#    - main
+on:
+  push:
+    branches:
+    - main
 
 jobs:
   proto_checks:
