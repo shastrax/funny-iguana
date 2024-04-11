@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-//option go_package = "github.com/shastrax/funny-iguana/proto";
-
 package iguana.v1;
 
 //import "google/type/datetime.proto";
@@ -9,6 +7,7 @@ package iguana.v1;
 //
 service IguanaService {
     rpc Ping(PingRequest) returns (PingResponse) {}
+    rpc VisitorEvent(VisitorEventRequest) returns (VisitorEventResponse) {}
 }
 
 //
@@ -18,5 +17,17 @@ message PingRequest {
 
 //
 message PingResponse {
+    string status = 1;
+}
+
+//
+message VisitorEventRequest {
+    string address = 1;
+    string origin = 2;
+    int64 time_stamp = 3;
+}
+
+//
+message VisitorEventResponse {
     string status = 1;
 }

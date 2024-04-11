@@ -16,4 +16,4 @@ Project Funny gRPC
 ```go get github.com/shastrax/funny-iguana/proto/iguana/v1```
 
 ## github action 
-TBD
+Runs linter and generates fresh proto stubs
