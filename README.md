@@ -2,7 +2,11 @@
 Project Funny gRPC
 
 ## buf
-[docs](https://buf.build/docs/tutorials/getting-started-with-buf-cli)
+[buf](https://buf.build/docs/tutorials/getting-started-with-buf-cli)
+[protobuf-go](https://github.com/protocolbuffers/protobuf-go)
+[connectrpc](https://github.com/connectrpc/connect-go)
+[h2c](https://pkg.go.dev/golang.org/x/net/http2/h2c)
+[python grpc](https://github.com/grpc/grpc)
 
 ## generate go and python
 ```buf generate proto```

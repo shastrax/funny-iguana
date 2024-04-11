@@ -9,23 +9,28 @@ jobs:
   proto_checks:
     name: proto lint
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
     steps:
       - uses: actions/checkout@v4.1.1
-    
-      - uses: arduino/setup-protoc@v3.0.0
+
+      - uses: bufbuild/buf-setup-action@v1.30.1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ github.token }}
 
-#      - name: Fetching base branch
-#        run: |
-#          git fetch -u origin ${{ github.base_ref }}:${{ github.base_ref }}
+      - run: buf --version
 
-#      - name: Running linter, checking breaking changes
-#        run: |
-#          buf lint
-#          buf breaking --against ".git#branch=${{ github.base_ref }}"          
+      - name: buf-lint
+        uses: bufbuild/buf-lint-action@v1.1.1
+        with:
+          input: proto
 
-#      - name: Installing protoc-gen-go
-#        run: |
-#          go get github.com/golang/protobuf/protoc-gen-go
-#          go get google.golang.org/grpc/cmd/protoc-gen-go-grpc          
+      - name: buf-generate
+        run: buf generate proto
+
+      - name: git commit
+        uses: stefanzweifel/git-auto-commit-action@v5.0.0
+        with:
+          commit_message: github action commit
