@@ -8,67 +8,15 @@ package iguana.v1;
 
 //
 service IguanaService {
-    rpc CognitoEvent(CognitoEventRequest) returns (CognitoEventResponse) {}
     rpc Ping(PingRequest) returns (PingResponse) {}
-    rpc SelectNote(SelectNoteRequest) returns (SelectNoteResponse) {}
-    rpc SubmitNote(SubmitNoteRequest) returns (SubmitNoteResponse) {}
-    rpc VisitorEvent(VisitorEventRequest) returns (VisitorEventResponse) {}
-}
-
-//
-message CognitoEventRequest {
-    string user_mail = 1;
-    string user_name = 2;
-    string user_sub = 3;
-//    google.type.DateTime created_at = 4;
-}
-
-//
-message CognitoEventResponse {
-    string status = 1;
 }
 
 //
 message PingRequest {
     string source = 1;
-    int64 time_stamp = 2;
 }
 
 //
 message PingResponse {
-    string status = 1;
-}
-
-//
-message SelectNoteRequest {
-    string client_id = 1;
-    string message = 2;
-}
-
-//
-message SelectNoteResponse {
-    string client_id = 1;
-    string message = 2;
-}
-
-//
-message SubmitNoteRequest {
-    string client_id = 1; // requestor
-}
-
-//
-message SubmitNoteResponse {
-    string client_id = 1; // requestor
-}
-
-//
-message VisitorEventRequest {
-    string address = 1;
-    int64 time_stamp = 2;
-    string url = 3;
-}
-
-//
-message VisitorEventResponse {
     string status = 1;
 }
