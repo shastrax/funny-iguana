@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/guycole/iguana-v1
+name: buf.build/shastrax/iguana-v1
 breaking:
   use:
     - FILE

@@ -23,7 +23,7 @@ message PingResponse {
 //
 message VisitorEventRequest {
     string address = 1;
-    string origin = 2;
+    string target = 2;
     int64 time_stamp = 3;
 }
 
