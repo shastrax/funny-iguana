@@ -35,6 +35,9 @@ const (
 const (
 	// IguanaServicePingProcedure is the fully-qualified name of the IguanaService's Ping RPC.
 	IguanaServicePingProcedure = "/iguana.v1.IguanaService/Ping"
+	// IguanaServiceRandomNoteProcedure is the fully-qualified name of the IguanaService's RandomNote
+	// RPC.
+	IguanaServiceRandomNoteProcedure = "/iguana.v1.IguanaService/RandomNote"
 	// IguanaServiceVisitorEventProcedure is the fully-qualified name of the IguanaService's
 	// VisitorEvent RPC.
 	IguanaServiceVisitorEventProcedure = "/iguana.v1.IguanaService/VisitorEvent"
@@ -44,12 +47,14 @@ const (
 var (
 	iguanaServiceServiceDescriptor            = v1.File_iguana_v1_iguana_proto.Services().ByName("IguanaService")
 	iguanaServicePingMethodDescriptor         = iguanaServiceServiceDescriptor.Methods().ByName("Ping")
+	iguanaServiceRandomNoteMethodDescriptor   = iguanaServiceServiceDescriptor.Methods().ByName("RandomNote")
 	iguanaServiceVisitorEventMethodDescriptor = iguanaServiceServiceDescriptor.Methods().ByName("VisitorEvent")
 )
 
 // IguanaServiceClient is a client for the iguana.v1.IguanaService service.
 type IguanaServiceClient interface {
 	Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error)
+	RandomNote(context.Context, *connect.Request[v1.RandomNoteRequest]) (*connect.Response[v1.RandomNoteResponse], error)
 	VisitorEvent(context.Context, *connect.Request[v1.VisitorEventRequest]) (*connect.Response[v1.VisitorEventResponse], error)
 }
 
@@ -69,6 +74,12 @@ func NewIguanaServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(iguanaServicePingMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		randomNote: connect.NewClient[v1.RandomNoteRequest, v1.RandomNoteResponse](
+			httpClient,
+			baseURL+IguanaServiceRandomNoteProcedure,
+			connect.WithSchema(iguanaServiceRandomNoteMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 		visitorEvent: connect.NewClient[v1.VisitorEventRequest, v1.VisitorEventResponse](
 			httpClient,
 			baseURL+IguanaServiceVisitorEventProcedure,
@@ -81,12 +92,18 @@ func NewIguanaServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 // iguanaServiceClient implements IguanaServiceClient.
 type iguanaServiceClient struct {
 	ping         *connect.Client[v1.PingRequest, v1.PingResponse]
+	randomNote   *connect.Client[v1.RandomNoteRequest, v1.RandomNoteResponse]
 	visitorEvent *connect.Client[v1.VisitorEventRequest, v1.VisitorEventResponse]
 }
 
 // Ping calls iguana.v1.IguanaService.Ping.
 func (c *iguanaServiceClient) Ping(ctx context.Context, req *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error) {
 	return c.ping.CallUnary(ctx, req)
+}
+
+// RandomNote calls iguana.v1.IguanaService.RandomNote.
+func (c *iguanaServiceClient) RandomNote(ctx context.Context, req *connect.Request[v1.RandomNoteRequest]) (*connect.Response[v1.RandomNoteResponse], error) {
+	return c.randomNote.CallUnary(ctx, req)
 }
 
 // VisitorEvent calls iguana.v1.IguanaService.VisitorEvent.
@@ -97,6 +114,7 @@ func (c *iguanaServiceClient) VisitorEvent(ctx context.Context, req *connect.Req
 // IguanaServiceHandler is an implementation of the iguana.v1.IguanaService service.
 type IguanaServiceHandler interface {
 	Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error)
+	RandomNote(context.Context, *connect.Request[v1.RandomNoteRequest]) (*connect.Response[v1.RandomNoteResponse], error)
 	VisitorEvent(context.Context, *connect.Request[v1.VisitorEventRequest]) (*connect.Response[v1.VisitorEventResponse], error)
 }
 
@@ -112,6 +130,12 @@ func NewIguanaServiceHandler(svc IguanaServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(iguanaServicePingMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	iguanaServiceRandomNoteHandler := connect.NewUnaryHandler(
+		IguanaServiceRandomNoteProcedure,
+		svc.RandomNote,
+		connect.WithSchema(iguanaServiceRandomNoteMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	iguanaServiceVisitorEventHandler := connect.NewUnaryHandler(
 		IguanaServiceVisitorEventProcedure,
 		svc.VisitorEvent,
@@ -122,6 +146,8 @@ func NewIguanaServiceHandler(svc IguanaServiceHandler, opts ...connect.HandlerOp
 		switch r.URL.Path {
 		case IguanaServicePingProcedure:
 			iguanaServicePingHandler.ServeHTTP(w, r)
+		case IguanaServiceRandomNoteProcedure:
+			iguanaServiceRandomNoteHandler.ServeHTTP(w, r)
 		case IguanaServiceVisitorEventProcedure:
 			iguanaServiceVisitorEventHandler.ServeHTTP(w, r)
 		default:
@@ -135,6 +161,10 @@ type UnimplementedIguanaServiceHandler struct{}
 
 func (UnimplementedIguanaServiceHandler) Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("iguana.v1.IguanaService.Ping is not implemented"))
+}
+
+func (UnimplementedIguanaServiceHandler) RandomNote(context.Context, *connect.Request[v1.RandomNoteRequest]) (*connect.Response[v1.RandomNoteResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("iguana.v1.IguanaService.RandomNote is not implemented"))
 }
 
 func (UnimplementedIguanaServiceHandler) VisitorEvent(context.Context, *connect.Request[v1.VisitorEventRequest]) (*connect.Response[v1.VisitorEventResponse], error) {
