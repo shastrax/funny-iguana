@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package iguana.v1;
 
-import "google/type/datetime.proto";
+import "google/protobuf/timestamp.proto";
 
 //
 service IguanaService {
@@ -22,8 +22,8 @@ message CognitoEventRequest {
 //
 message CognitoEventResponse {
     string cognito_key = 1;
-    google.type.DateTime created_at = 2;
-    google.type.DateTime last_seen_at = 3;
+    google.protobuf.Timestamp created_at = 2;
+    google.protobuf.Timestamp last_seen_at = 3;
     bool suspend_flag = 4;
     string email = 5;
     string name = 6;
