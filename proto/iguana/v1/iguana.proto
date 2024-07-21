@@ -9,6 +9,7 @@ service IguanaService {
     rpc CognitoEvent(CognitoEventRequest) returns (CognitoEventResponse) {}
     rpc Ping(PingRequest) returns (PingResponse) {}
 //    rpc RandomNote(RandomNoteRequest) returns (RandomNoteResponse) {}
+    rpc UserGroupDetail(UserGroupDetailRequest) returns (UserGroupDetailResponse) {}
     rpc VisitorEvent(VisitorEventRequest) returns (VisitorEventResponse) {}
 }
 
@@ -69,6 +70,16 @@ message PingRequest {
 
 //
 message PingResponse {
+    string status = 1;
+}
+
+//
+message UserGroupDetailRequest {
+    string group_key = 1;
+}
+
+//
+message UserGroupDetailResponse {
     string status = 1;
 }
 
