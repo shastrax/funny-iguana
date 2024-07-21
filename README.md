@@ -14,6 +14,7 @@ Project Funny gRPC
 
 ## go application
 ```go get github.com/shastrax/funny-iguana/proto/iguana/v1```
+```go get github.com/shastrax/funny-iguana/gen/iguana/v1/iguanav1connect```
 
 ## github action 
 Runs linter and generates fresh proto stubs

@@ -2,14 +2,55 @@ syntax = "proto3";
 
 package iguana.v1;
 
-//import "google/type/datetime.proto";
+import "google/type/datetime.proto";
 
 //
 service IguanaService {
+    rpc CognitoEvent(CognitoEventRequest) returns (CognitoEventResponse) {}
     rpc Ping(PingRequest) returns (PingResponse) {}
-    rpc RandomNote(RandomNoteRequest) returns (RandomNoteResponse) {}
+//    rpc RandomNote(RandomNoteRequest) returns (RandomNoteResponse) {}
     rpc VisitorEvent(VisitorEventRequest) returns (VisitorEventResponse) {}
 }
+
+// 
+message CognitoEventRequest {
+    string cognito_key = 1;
+    string email = 2;
+    string name = 3;
+}
+
+//
+message CognitoEventResponse {
+    string cognito_key = 1;
+    google.type.DateTime created_at = 2;
+    google.type.DateTime last_seen_at = 3;
+    bool suspend_flag = 4;
+    string email = 5;
+    string name = 6;
+}
+
+//
+//message Note {
+//    string group_name = 1;
+//    string group_uuid = 2;
+//    string owner_name = 3;
+//    string owner_uuid = 4;
+//  
+//    bool admin_flag = 5;
+//    bool inhibit_flag = 6;
+//    bool private_flag = 7;
+//    bool suspend_flag = 8;
+//
+//    int64 created_at = 9;
+//    int64 modified_at = 10;
+//    int64 modified_count = 22;
+//
+//    int32 like_count = 31;
+//    int32 visit_count = 32;
+//
+//    string note_uuid = 33;
+//    string note_message = 34;
+//}
 
 //
 message RandomNoteRequest {

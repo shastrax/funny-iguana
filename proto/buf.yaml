@@ -1,8 +1,0 @@
-version: v1
-name: buf.build/shastrax/iguana-v1
-breaking:
-  use:
-    - FILE
-lint:
-  use:
-    - DEFAULT
