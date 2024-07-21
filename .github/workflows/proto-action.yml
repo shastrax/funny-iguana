@@ -29,7 +29,7 @@ jobs:
 #          input: .
 
       - name: buf-generate
-        run: buf generate proto
+        run: buf generate .
 
       - name: git commit
         uses: stefanzweifel/git-auto-commit-action@v5.0.0
