@@ -22,14 +22,13 @@ jobs:
 
       - run: buf --version
 
-# breaks on v2 buf.yaml
-#      - name: buf-lint
-#        uses: bufbuild/buf-lint-action@v1.1.1
-#        with:
-#          input: .
+      - name: buf-lint
+        uses: bufbuild/buf-lint-action@v1.1.1
+        with:
+          input: proto
 
       - name: buf-generate
-        run: buf generate .
+        run: buf generate proto
 
       - name: git commit
         uses: stefanzweifel/git-auto-commit-action@v5.0.0
