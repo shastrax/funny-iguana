@@ -22,10 +22,11 @@ jobs:
 
       - run: buf --version
 
-      - name: buf-lint
-        uses: bufbuild/buf-lint-action@v1.1.1
-        with:
-          input: .
+# breaks on v2 buf.yaml
+#      - name: buf-lint
+#        uses: bufbuild/buf-lint-action@v1.1.1
+#        with:
+#          input: .
 
       - name: buf-generate
         run: buf generate proto
