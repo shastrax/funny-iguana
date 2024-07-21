@@ -8,3 +8,5 @@ breaking:
 lint:
   use:
     - DEFAULT
+  ignore:
+    - proto/google/type/datetime.proto
