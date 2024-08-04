@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16iguana/v1/iguana.proto\x12\tiguana.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"g\n\x13\x43ognitoEventRequest\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05\x65mail\x18\x02 \x01(\tR\x05\x65mail\x12\x14\n\x05group\x18\x03 \x01(\tR\x05group\x12\x12\n\x04name\x18\x04 \x01(\tR\x04name\"\x9e\x02\n\x14\x43ognitoEventResponse\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x18\n\x07retcode\x18\x02 \x01(\rR\x07retcode\x12\x39\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12<\n\x0clast_seen_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nlastSeenAt\x12!\n\x0csuspend_flag\x18\x05 \x01(\x08R\x0bsuspendFlag\x12\x14\n\x05\x65mail\x18\x06 \x01(\tR\x05\x65mail\x12\x14\n\x05group\x18\x07 \x01(\tR\x05group\x12\x12\n\x04name\x18\x08 \x01(\tR\x04name\"+\n\x11RandomNoteRequest\x12\x16\n\x06source\x18\x01 \x01(\tR\x06source\".\n\x12RandomNoteResponse\x12\x18\n\x07payload\x18\x01 \x01(\tR\x07payload\"%\n\x0bPingRequest\x12\x16\n\x06source\x18\x01 \x01(\tR\x06source\"&\n\x0cPingResponse\x12\x16\n\x06status\x18\x01 \x01(\tR\x06status\"5\n\x16UserGroupDetailRequest\x12\x1b\n\tgroup_key\x18\x01 \x01(\tR\x08groupKey\"1\n\x17UserGroupDetailResponse\x12\x16\n\x06status\x18\x01 \x01(\tR\x06status\"f\n\x13VisitorEventRequest\x12\x18\n\x07\x61\x64\x64ress\x18\x01 \x01(\tR\x07\x61\x64\x64ress\x12\x16\n\x06target\x18\x02 \x01(\tR\x06target\x12\x1d\n\ntime_stamp\x18\x03 \x01(\x03R\ttimeStamp\".\n\x14VisitorEventResponse\x12\x16\n\x06status\x18\x01 \x01(\tR\x06status2\xcc\x02\n\rIguanaService\x12Q\n\x0c\x43ognitoEvent\x12\x1e.iguana.v1.CognitoEventRequest\x1a\x1f.iguana.v1.CognitoEventResponse\"\x00\x12\x39\n\x04Ping\x12\x16.iguana.v1.PingRequest\x1a\x17.iguana.v1.PingResponse\"\x00\x12Z\n\x0fUserGroupDetail\x12!.iguana.v1.UserGroupDetailRequest\x1a\".iguana.v1.UserGroupDetailResponse\"\x00\x12Q\n\x0cVisitorEvent\x12\x1e.iguana.v1.VisitorEventRequest\x1a\x1f.iguana.v1.VisitorEventResponse\"\x00\x42\x9a\x01\n\rcom.iguana.v1B\x0bIguanaProtoP\x01Z7github.com/shastrax/funny-iguana/gen/iguana/v1;iguanav1\xa2\x02\x03IXX\xaa\x02\tIguana.V1\xca\x02\tIguana\\V1\xe2\x02\x15Iguana\\V1\\GPBMetadata\xea\x02\nIguana::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16iguana/v1/iguana.proto\x12\tiguana.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"g\n\x13\x43ognitoEventRequest\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05\x65mail\x18\x02 \x01(\tR\x05\x65mail\x12\x14\n\x05group\x18\x03 \x01(\tR\x05group\x12\x12\n\x04name\x18\x04 \x01(\tR\x04name\"\xb2\x02\n\x14\x43ognitoEventResponse\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x18\n\x07retcode\x18\x02 \x01(\rR\x07retcode\x12\x39\n\ncreated_at\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12<\n\x0clast_seen_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\nlastSeenAt\x12!\n\x0csuspend_flag\x18\x05 \x01(\x08R\x0bsuspendFlag\x12\x14\n\x05\x65mail\x18\x06 \x01(\tR\x05\x65mail\x12\x14\n\x05group\x18\x07 \x01(\tR\x05group\x12\x12\n\x04name\x18\x08 \x01(\tR\x04name\x12\x12\n\x04role\x18\t \x01(\tR\x04role\"+\n\x11RandomNoteRequest\x12\x16\n\x06source\x18\x01 \x01(\tR\x06source\".\n\x12RandomNoteResponse\x12\x18\n\x07payload\x18\x01 \x01(\tR\x07payload\"%\n\x0bPingRequest\x12\x16\n\x06source\x18\x01 \x01(\tR\x06source\"&\n\x0cPingResponse\x12\x16\n\x06status\x18\x01 \x01(\tR\x06status\"5\n\x16UserGroupDetailRequest\x12\x1b\n\tgroup_key\x18\x01 \x01(\tR\x08groupKey\"1\n\x17UserGroupDetailResponse\x12\x16\n\x06status\x18\x01 \x01(\tR\x06status\"f\n\x13VisitorEventRequest\x12\x18\n\x07\x61\x64\x64ress\x18\x01 \x01(\tR\x07\x61\x64\x64ress\x12\x16\n\x06target\x18\x02 \x01(\tR\x06target\x12\x1d\n\ntime_stamp\x18\x03 \x01(\x03R\ttimeStamp\".\n\x14VisitorEventResponse\x12\x16\n\x06status\x18\x01 \x01(\tR\x06status2\xcc\x02\n\rIguanaService\x12Q\n\x0c\x43ognitoEvent\x12\x1e.iguana.v1.CognitoEventRequest\x1a\x1f.iguana.v1.CognitoEventResponse\"\x00\x12\x39\n\x04Ping\x12\x16.iguana.v1.PingRequest\x1a\x17.iguana.v1.PingResponse\"\x00\x12Z\n\x0fUserGroupDetail\x12!.iguana.v1.UserGroupDetailRequest\x1a\".iguana.v1.UserGroupDetailResponse\"\x00\x12Q\n\x0cVisitorEvent\x12\x1e.iguana.v1.VisitorEventRequest\x1a\x1f.iguana.v1.VisitorEventResponse\"\x00\x42\x9a\x01\n\rcom.iguana.v1B\x0bIguanaProtoP\x01Z7github.com/shastrax/funny-iguana/gen/iguana/v1;iguanav1\xa2\x02\x03IXX\xaa\x02\tIguana.V1\xca\x02\tIguana\\V1\xe2\x02\x15Iguana\\V1\\GPBMetadata\xea\x02\nIguana::V1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -36,23 +36,23 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_COGNITOEVENTREQUEST']._serialized_start=70
   _globals['_COGNITOEVENTREQUEST']._serialized_end=173
   _globals['_COGNITOEVENTRESPONSE']._serialized_start=176
-  _globals['_COGNITOEVENTRESPONSE']._serialized_end=462
-  _globals['_RANDOMNOTEREQUEST']._serialized_start=464
-  _globals['_RANDOMNOTEREQUEST']._serialized_end=507
-  _globals['_RANDOMNOTERESPONSE']._serialized_start=509
-  _globals['_RANDOMNOTERESPONSE']._serialized_end=555
-  _globals['_PINGREQUEST']._serialized_start=557
-  _globals['_PINGREQUEST']._serialized_end=594
-  _globals['_PINGRESPONSE']._serialized_start=596
-  _globals['_PINGRESPONSE']._serialized_end=634
-  _globals['_USERGROUPDETAILREQUEST']._serialized_start=636
-  _globals['_USERGROUPDETAILREQUEST']._serialized_end=689
-  _globals['_USERGROUPDETAILRESPONSE']._serialized_start=691
-  _globals['_USERGROUPDETAILRESPONSE']._serialized_end=740
-  _globals['_VISITOREVENTREQUEST']._serialized_start=742
-  _globals['_VISITOREVENTREQUEST']._serialized_end=844
-  _globals['_VISITOREVENTRESPONSE']._serialized_start=846
-  _globals['_VISITOREVENTRESPONSE']._serialized_end=892
-  _globals['_IGUANASERVICE']._serialized_start=895
-  _globals['_IGUANASERVICE']._serialized_end=1227
+  _globals['_COGNITOEVENTRESPONSE']._serialized_end=482
+  _globals['_RANDOMNOTEREQUEST']._serialized_start=484
+  _globals['_RANDOMNOTEREQUEST']._serialized_end=527
+  _globals['_RANDOMNOTERESPONSE']._serialized_start=529
+  _globals['_RANDOMNOTERESPONSE']._serialized_end=575
+  _globals['_PINGREQUEST']._serialized_start=577
+  _globals['_PINGREQUEST']._serialized_end=614
+  _globals['_PINGRESPONSE']._serialized_start=616
+  _globals['_PINGRESPONSE']._serialized_end=654
+  _globals['_USERGROUPDETAILREQUEST']._serialized_start=656
+  _globals['_USERGROUPDETAILREQUEST']._serialized_end=709
+  _globals['_USERGROUPDETAILRESPONSE']._serialized_start=711
+  _globals['_USERGROUPDETAILRESPONSE']._serialized_end=760
+  _globals['_VISITOREVENTREQUEST']._serialized_start=762
+  _globals['_VISITOREVENTREQUEST']._serialized_end=864
+  _globals['_VISITOREVENTRESPONSE']._serialized_start=866
+  _globals['_VISITOREVENTRESPONSE']._serialized_end=912
+  _globals['_IGUANASERVICE']._serialized_start=915
+  _globals['_IGUANASERVICE']._serialized_end=1247
 # @@protoc_insertion_point(module_scope)

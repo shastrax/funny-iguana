@@ -31,6 +31,7 @@ message CognitoEventResponse {
     string email = 6;
     string group = 7;
     string name = 8;
+    string role = 9;
 }
 
 //
