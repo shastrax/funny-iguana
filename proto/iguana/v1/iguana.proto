@@ -9,7 +9,7 @@ service IguanaService {
     rpc CognitoEvent(CognitoEventRequest) returns (CognitoEventResponse) {}
     rpc Ping(PingRequest) returns (PingResponse) {}
 //    rpc RandomNote(RandomNoteRequest) returns (RandomNoteResponse) {}
-    rpc UserGroupDetail(UserGroupDetailRequest) returns (UserGroupDetailResponse) {}
+    rpc UserGroup(UserGroupRequest) returns (UserGroupResponse) {}
     rpc VisitorEvent(VisitorEventRequest) returns (VisitorEventResponse) {}
 }
 
@@ -35,16 +35,16 @@ message CognitoEventResponse {
 }
 
 //
-//message Note {
-//    string group_name = 1;
-//    string group_uuid = 2;
+message NoteMeta {
+    string group_name = 1;
+    string group_uuid = 2;
 //    string owner_name = 3;
 //    string owner_uuid = 4;
 //  
 //    bool admin_flag = 5;
 //    bool inhibit_flag = 6;
-//    bool private_flag = 7;
-//    bool suspend_flag = 8;
+    bool private_flag = 3;
+    bool suspend_flag = 4;
 //
 //    int64 created_at = 9;
 //    int64 modified_at = 10;
@@ -52,19 +52,30 @@ message CognitoEventResponse {
 //
 //    int32 like_count = 31;
 //    int32 visit_count = 32;
+    int32 mask = 5;
+    int32 version = 6;
+
 //
-//    string note_uuid = 33;
+    string note_uuid = 7;
 //    string note_message = 34;
-//}
+}
 
 //
 message RandomNoteRequest {
     string source = 1;
+    uint32 content_mask = 2;
 }
 
 //
 message RandomNoteResponse {
-    string payload = 1;
+    string key = 1;
+    uint32 retcode = 2;
+    uint32 view_count = 3;
+    uint32 favorite_count = 4;
+    uint32 version = 5;
+    string user_name = 6;
+    string note_uuid = 7;
+    string payload = 8;
 }
 
 //
@@ -77,14 +88,25 @@ message PingResponse {
     string status = 1;
 }
 
-//
-message UserGroupDetailRequest {
-    string group_key = 1;
+message UserGroupHeader {
+    string group_uuid = 1;
+    uint32 retcode = 2;
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp last_seen_at = 4;
+    bool private_flag = 5;
+    string name = 6;
 }
 
 //
-message UserGroupDetailResponse {
-    string status = 1;
+message UserGroupRequest {
+    string user_uuid = 1;
+}
+
+//
+message UserGroupResponse {
+    string user_uuid = 1;
+    uint32 retcode = 2;
+    repeated UserGroupHeader group_header = 3;
 }
 
 //
@@ -96,5 +118,5 @@ message VisitorEventRequest {
 
 //
 message VisitorEventResponse {
-    string status = 1;
+    uint32 retcode = 1;
 }
