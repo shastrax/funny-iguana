@@ -70,12 +70,13 @@ message RandomNoteRequest {
 message RandomNoteResponse {
     string key = 1;
     uint32 retcode = 2;
-    uint32 view_count = 3;
-    uint32 favorite_count = 4;
-    uint32 version = 5;
-    string user_name = 6;
-    string note_uuid = 7;
-    string payload = 8;
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp last_viewed_at = 4;
+    string created_by_uuid = 5;
+    uint32 view_count = 6;
+    uint32 favorite_count = 7;
+    uint32 version = 8;
+    string message = 9;
 }
 
 //
