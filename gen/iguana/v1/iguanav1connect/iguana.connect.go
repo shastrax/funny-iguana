@@ -38,6 +38,9 @@ const (
 	IguanaServiceCognitoEventProcedure = "/iguana.v1.IguanaService/CognitoEvent"
 	// IguanaServicePingProcedure is the fully-qualified name of the IguanaService's Ping RPC.
 	IguanaServicePingProcedure = "/iguana.v1.IguanaService/Ping"
+	// IguanaServiceRandomNoteProcedure is the fully-qualified name of the IguanaService's RandomNote
+	// RPC.
+	IguanaServiceRandomNoteProcedure = "/iguana.v1.IguanaService/RandomNote"
 	// IguanaServiceUserGroupProcedure is the fully-qualified name of the IguanaService's UserGroup RPC.
 	IguanaServiceUserGroupProcedure = "/iguana.v1.IguanaService/UserGroup"
 	// IguanaServiceVisitorEventProcedure is the fully-qualified name of the IguanaService's
@@ -50,6 +53,7 @@ var (
 	iguanaServiceServiceDescriptor            = v1.File_iguana_v1_iguana_proto.Services().ByName("IguanaService")
 	iguanaServiceCognitoEventMethodDescriptor = iguanaServiceServiceDescriptor.Methods().ByName("CognitoEvent")
 	iguanaServicePingMethodDescriptor         = iguanaServiceServiceDescriptor.Methods().ByName("Ping")
+	iguanaServiceRandomNoteMethodDescriptor   = iguanaServiceServiceDescriptor.Methods().ByName("RandomNote")
 	iguanaServiceUserGroupMethodDescriptor    = iguanaServiceServiceDescriptor.Methods().ByName("UserGroup")
 	iguanaServiceVisitorEventMethodDescriptor = iguanaServiceServiceDescriptor.Methods().ByName("VisitorEvent")
 )
@@ -58,7 +62,7 @@ var (
 type IguanaServiceClient interface {
 	CognitoEvent(context.Context, *connect.Request[v1.CognitoEventRequest]) (*connect.Response[v1.CognitoEventResponse], error)
 	Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error)
-	// rpc RandomNote(RandomNoteRequest) returns (RandomNoteResponse) {}
+	RandomNote(context.Context, *connect.Request[v1.RandomNoteRequest]) (*connect.Response[v1.RandomNoteResponse], error)
 	UserGroup(context.Context, *connect.Request[v1.UserGroupRequest]) (*connect.Response[v1.UserGroupResponse], error)
 	VisitorEvent(context.Context, *connect.Request[v1.VisitorEventRequest]) (*connect.Response[v1.VisitorEventResponse], error)
 }
@@ -85,6 +89,12 @@ func NewIguanaServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(iguanaServicePingMethodDescriptor),
 			connect.WithClientOptions(opts...),
 		),
+		randomNote: connect.NewClient[v1.RandomNoteRequest, v1.RandomNoteResponse](
+			httpClient,
+			baseURL+IguanaServiceRandomNoteProcedure,
+			connect.WithSchema(iguanaServiceRandomNoteMethodDescriptor),
+			connect.WithClientOptions(opts...),
+		),
 		userGroup: connect.NewClient[v1.UserGroupRequest, v1.UserGroupResponse](
 			httpClient,
 			baseURL+IguanaServiceUserGroupProcedure,
@@ -104,6 +114,7 @@ func NewIguanaServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 type iguanaServiceClient struct {
 	cognitoEvent *connect.Client[v1.CognitoEventRequest, v1.CognitoEventResponse]
 	ping         *connect.Client[v1.PingRequest, v1.PingResponse]
+	randomNote   *connect.Client[v1.RandomNoteRequest, v1.RandomNoteResponse]
 	userGroup    *connect.Client[v1.UserGroupRequest, v1.UserGroupResponse]
 	visitorEvent *connect.Client[v1.VisitorEventRequest, v1.VisitorEventResponse]
 }
@@ -116,6 +127,11 @@ func (c *iguanaServiceClient) CognitoEvent(ctx context.Context, req *connect.Req
 // Ping calls iguana.v1.IguanaService.Ping.
 func (c *iguanaServiceClient) Ping(ctx context.Context, req *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error) {
 	return c.ping.CallUnary(ctx, req)
+}
+
+// RandomNote calls iguana.v1.IguanaService.RandomNote.
+func (c *iguanaServiceClient) RandomNote(ctx context.Context, req *connect.Request[v1.RandomNoteRequest]) (*connect.Response[v1.RandomNoteResponse], error) {
+	return c.randomNote.CallUnary(ctx, req)
 }
 
 // UserGroup calls iguana.v1.IguanaService.UserGroup.
@@ -132,7 +148,7 @@ func (c *iguanaServiceClient) VisitorEvent(ctx context.Context, req *connect.Req
 type IguanaServiceHandler interface {
 	CognitoEvent(context.Context, *connect.Request[v1.CognitoEventRequest]) (*connect.Response[v1.CognitoEventResponse], error)
 	Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error)
-	// rpc RandomNote(RandomNoteRequest) returns (RandomNoteResponse) {}
+	RandomNote(context.Context, *connect.Request[v1.RandomNoteRequest]) (*connect.Response[v1.RandomNoteResponse], error)
 	UserGroup(context.Context, *connect.Request[v1.UserGroupRequest]) (*connect.Response[v1.UserGroupResponse], error)
 	VisitorEvent(context.Context, *connect.Request[v1.VisitorEventRequest]) (*connect.Response[v1.VisitorEventResponse], error)
 }
@@ -155,6 +171,12 @@ func NewIguanaServiceHandler(svc IguanaServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(iguanaServicePingMethodDescriptor),
 		connect.WithHandlerOptions(opts...),
 	)
+	iguanaServiceRandomNoteHandler := connect.NewUnaryHandler(
+		IguanaServiceRandomNoteProcedure,
+		svc.RandomNote,
+		connect.WithSchema(iguanaServiceRandomNoteMethodDescriptor),
+		connect.WithHandlerOptions(opts...),
+	)
 	iguanaServiceUserGroupHandler := connect.NewUnaryHandler(
 		IguanaServiceUserGroupProcedure,
 		svc.UserGroup,
@@ -173,6 +195,8 @@ func NewIguanaServiceHandler(svc IguanaServiceHandler, opts ...connect.HandlerOp
 			iguanaServiceCognitoEventHandler.ServeHTTP(w, r)
 		case IguanaServicePingProcedure:
 			iguanaServicePingHandler.ServeHTTP(w, r)
+		case IguanaServiceRandomNoteProcedure:
+			iguanaServiceRandomNoteHandler.ServeHTTP(w, r)
 		case IguanaServiceUserGroupProcedure:
 			iguanaServiceUserGroupHandler.ServeHTTP(w, r)
 		case IguanaServiceVisitorEventProcedure:
@@ -192,6 +216,10 @@ func (UnimplementedIguanaServiceHandler) CognitoEvent(context.Context, *connect.
 
 func (UnimplementedIguanaServiceHandler) Ping(context.Context, *connect.Request[v1.PingRequest]) (*connect.Response[v1.PingResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("iguana.v1.IguanaService.Ping is not implemented"))
+}
+
+func (UnimplementedIguanaServiceHandler) RandomNote(context.Context, *connect.Request[v1.RandomNoteRequest]) (*connect.Response[v1.RandomNoteResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("iguana.v1.IguanaService.RandomNote is not implemented"))
 }
 
 func (UnimplementedIguanaServiceHandler) UserGroup(context.Context, *connect.Request[v1.UserGroupRequest]) (*connect.Response[v1.UserGroupResponse], error) {
