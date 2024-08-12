@@ -85,7 +85,7 @@ message PingRequest {
 
 //
 message PingResponse {
-    string status = 1;
+    uint32 retcode = 1;
 }
 
 message UserGroupHeader {
