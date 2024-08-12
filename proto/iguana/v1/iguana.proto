@@ -8,7 +8,7 @@ import "google/protobuf/timestamp.proto";
 service IguanaService {
     rpc CognitoEvent(CognitoEventRequest) returns (CognitoEventResponse) {}
     rpc Ping(PingRequest) returns (PingResponse) {}
-//    rpc RandomNote(RandomNoteRequest) returns (RandomNoteResponse) {}
+    rpc RandomNote(RandomNoteRequest) returns (RandomNoteResponse) {}
     rpc UserGroup(UserGroupRequest) returns (UserGroupResponse) {}
     rpc VisitorEvent(VisitorEventRequest) returns (VisitorEventResponse) {}
 }
