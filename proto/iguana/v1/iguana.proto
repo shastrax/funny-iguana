@@ -88,6 +88,7 @@ message PingResponse {
     uint32 retcode = 1;
 }
 
+// 
 message UserGroupHeader {
     string group_uuid = 1;
     google.protobuf.Timestamp created_at = 2;
