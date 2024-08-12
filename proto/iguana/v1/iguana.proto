@@ -90,10 +90,10 @@ message PingResponse {
 
 message UserGroupHeader {
     string group_uuid = 1;
-    google.protobuf.Timestamp created_at = 2;
-    google.protobuf.Timestamp modified_at = 3;
-    bool private_flag = 4;
-    string name = 5;
+//    google.protobuf.Timestamp created_at = 2;
+//    google.protobuf.Timestamp modified_at = 3;
+    bool private_flag = 2;
+    string name = 3;
 }
 
 //
