@@ -62,8 +62,7 @@ message NoteMeta {
 
 //
 message RandomNoteRequest {
-    string source = 1;
-    uint32 content_mask = 2;
+    uint32 content_mask = 1;
 }
 
 //
