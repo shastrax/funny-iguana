@@ -9,6 +9,7 @@ service IguanaService {
     rpc CognitoEvent(CognitoEventRequest) returns (CognitoEventResponse) {}
     rpc Ping(PingRequest) returns (PingResponse) {}
     rpc RandomNote(RandomNoteRequest) returns (RandomNoteResponse) {}
+    rpc SelectUser(SelectUserRequest) returns (SelectUserResponse) {}
     rpc UserGroup(UserGroupRequest) returns (UserGroupResponse) {}
     rpc VisitorEvent(VisitorEventRequest) returns (VisitorEventResponse) {}
 }
@@ -86,6 +87,24 @@ message PingRequest {
 //
 message PingResponse {
     uint32 retcode = 1;
+}
+
+// 
+message SelectUserRequest {
+    string key = 1;
+}
+
+//
+message SelectUserResponse {
+    string key = 1;
+    uint32 retcode = 2;
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp last_seen_at = 4;
+    bool suspend_flag = 5;
+    string email = 6;
+    string group = 7;
+    string name = 8;
+    string role = 9;
 }
 
 // 

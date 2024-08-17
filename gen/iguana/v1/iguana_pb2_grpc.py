@@ -30,6 +30,11 @@ class IguanaServiceStub(object):
                 request_serializer=iguana_dot_v1_dot_iguana__pb2.RandomNoteRequest.SerializeToString,
                 response_deserializer=iguana_dot_v1_dot_iguana__pb2.RandomNoteResponse.FromString,
                 )
+        self.SelectUser = channel.unary_unary(
+                '/iguana.v1.IguanaService/SelectUser',
+                request_serializer=iguana_dot_v1_dot_iguana__pb2.SelectUserRequest.SerializeToString,
+                response_deserializer=iguana_dot_v1_dot_iguana__pb2.SelectUserResponse.FromString,
+                )
         self.UserGroup = channel.unary_unary(
                 '/iguana.v1.IguanaService/UserGroup',
                 request_serializer=iguana_dot_v1_dot_iguana__pb2.UserGroupRequest.SerializeToString,
@@ -64,6 +69,12 @@ class IguanaServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def SelectUser(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def UserGroup(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -93,6 +104,11 @@ def add_IguanaServiceServicer_to_server(servicer, server):
                     servicer.RandomNote,
                     request_deserializer=iguana_dot_v1_dot_iguana__pb2.RandomNoteRequest.FromString,
                     response_serializer=iguana_dot_v1_dot_iguana__pb2.RandomNoteResponse.SerializeToString,
+            ),
+            'SelectUser': grpc.unary_unary_rpc_method_handler(
+                    servicer.SelectUser,
+                    request_deserializer=iguana_dot_v1_dot_iguana__pb2.SelectUserRequest.FromString,
+                    response_serializer=iguana_dot_v1_dot_iguana__pb2.SelectUserResponse.SerializeToString,
             ),
             'UserGroup': grpc.unary_unary_rpc_method_handler(
                     servicer.UserGroup,
@@ -163,6 +179,23 @@ class IguanaService(object):
         return grpc.experimental.unary_unary(request, target, '/iguana.v1.IguanaService/RandomNote',
             iguana_dot_v1_dot_iguana__pb2.RandomNoteRequest.SerializeToString,
             iguana_dot_v1_dot_iguana__pb2.RandomNoteResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SelectUser(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/iguana.v1.IguanaService/SelectUser',
+            iguana_dot_v1_dot_iguana__pb2.SelectUserRequest.SerializeToString,
+            iguana_dot_v1_dot_iguana__pb2.SelectUserResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 

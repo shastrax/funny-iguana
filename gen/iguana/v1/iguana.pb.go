@@ -561,6 +561,164 @@ func (x *PingResponse) GetRetcode() uint32 {
 	return 0
 }
 
+type SelectUserRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+}
+
+func (x *SelectUserRequest) Reset() {
+	*x = SelectUserRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_iguana_v1_iguana_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SelectUserRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SelectUserRequest) ProtoMessage() {}
+
+func (x *SelectUserRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_iguana_v1_iguana_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SelectUserRequest.ProtoReflect.Descriptor instead.
+func (*SelectUserRequest) Descriptor() ([]byte, []int) {
+	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *SelectUserRequest) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+type SelectUserResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key         string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Retcode     uint32                 `protobuf:"varint,2,opt,name=retcode,proto3" json:"retcode,omitempty"`
+	CreatedAt   *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	LastSeenAt  *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=last_seen_at,json=lastSeenAt,proto3" json:"last_seen_at,omitempty"`
+	SuspendFlag bool                   `protobuf:"varint,5,opt,name=suspend_flag,json=suspendFlag,proto3" json:"suspend_flag,omitempty"`
+	Email       string                 `protobuf:"bytes,6,opt,name=email,proto3" json:"email,omitempty"`
+	Group       string                 `protobuf:"bytes,7,opt,name=group,proto3" json:"group,omitempty"`
+	Name        string                 `protobuf:"bytes,8,opt,name=name,proto3" json:"name,omitempty"`
+	Role        string                 `protobuf:"bytes,9,opt,name=role,proto3" json:"role,omitempty"`
+}
+
+func (x *SelectUserResponse) Reset() {
+	*x = SelectUserResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_iguana_v1_iguana_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SelectUserResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SelectUserResponse) ProtoMessage() {}
+
+func (x *SelectUserResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_iguana_v1_iguana_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SelectUserResponse.ProtoReflect.Descriptor instead.
+func (*SelectUserResponse) Descriptor() ([]byte, []int) {
+	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *SelectUserResponse) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *SelectUserResponse) GetRetcode() uint32 {
+	if x != nil {
+		return x.Retcode
+	}
+	return 0
+}
+
+func (x *SelectUserResponse) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *SelectUserResponse) GetLastSeenAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.LastSeenAt
+	}
+	return nil
+}
+
+func (x *SelectUserResponse) GetSuspendFlag() bool {
+	if x != nil {
+		return x.SuspendFlag
+	}
+	return false
+}
+
+func (x *SelectUserResponse) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *SelectUserResponse) GetGroup() string {
+	if x != nil {
+		return x.Group
+	}
+	return ""
+}
+
+func (x *SelectUserResponse) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *SelectUserResponse) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
 type UserGroupHeader struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -576,7 +734,7 @@ type UserGroupHeader struct {
 func (x *UserGroupHeader) Reset() {
 	*x = UserGroupHeader{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_iguana_v1_iguana_proto_msgTypes[7]
+		mi := &file_iguana_v1_iguana_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -589,7 +747,7 @@ func (x *UserGroupHeader) String() string {
 func (*UserGroupHeader) ProtoMessage() {}
 
 func (x *UserGroupHeader) ProtoReflect() protoreflect.Message {
-	mi := &file_iguana_v1_iguana_proto_msgTypes[7]
+	mi := &file_iguana_v1_iguana_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -602,7 +760,7 @@ func (x *UserGroupHeader) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserGroupHeader.ProtoReflect.Descriptor instead.
 func (*UserGroupHeader) Descriptor() ([]byte, []int) {
-	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{7}
+	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UserGroupHeader) GetGroupUuid() string {
@@ -651,7 +809,7 @@ type UserGroupRequest struct {
 func (x *UserGroupRequest) Reset() {
 	*x = UserGroupRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_iguana_v1_iguana_proto_msgTypes[8]
+		mi := &file_iguana_v1_iguana_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -664,7 +822,7 @@ func (x *UserGroupRequest) String() string {
 func (*UserGroupRequest) ProtoMessage() {}
 
 func (x *UserGroupRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_iguana_v1_iguana_proto_msgTypes[8]
+	mi := &file_iguana_v1_iguana_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -677,7 +835,7 @@ func (x *UserGroupRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserGroupRequest.ProtoReflect.Descriptor instead.
 func (*UserGroupRequest) Descriptor() ([]byte, []int) {
-	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{8}
+	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *UserGroupRequest) GetUserUuid() string {
@@ -700,7 +858,7 @@ type UserGroupResponse struct {
 func (x *UserGroupResponse) Reset() {
 	*x = UserGroupResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_iguana_v1_iguana_proto_msgTypes[9]
+		mi := &file_iguana_v1_iguana_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -713,7 +871,7 @@ func (x *UserGroupResponse) String() string {
 func (*UserGroupResponse) ProtoMessage() {}
 
 func (x *UserGroupResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_iguana_v1_iguana_proto_msgTypes[9]
+	mi := &file_iguana_v1_iguana_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -726,7 +884,7 @@ func (x *UserGroupResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserGroupResponse.ProtoReflect.Descriptor instead.
 func (*UserGroupResponse) Descriptor() ([]byte, []int) {
-	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{9}
+	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *UserGroupResponse) GetUserUuid() string {
@@ -763,7 +921,7 @@ type VisitorEventRequest struct {
 func (x *VisitorEventRequest) Reset() {
 	*x = VisitorEventRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_iguana_v1_iguana_proto_msgTypes[10]
+		mi := &file_iguana_v1_iguana_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -776,7 +934,7 @@ func (x *VisitorEventRequest) String() string {
 func (*VisitorEventRequest) ProtoMessage() {}
 
 func (x *VisitorEventRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_iguana_v1_iguana_proto_msgTypes[10]
+	mi := &file_iguana_v1_iguana_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -789,7 +947,7 @@ func (x *VisitorEventRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VisitorEventRequest.ProtoReflect.Descriptor instead.
 func (*VisitorEventRequest) Descriptor() ([]byte, []int) {
-	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{10}
+	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *VisitorEventRequest) GetAddress() string {
@@ -824,7 +982,7 @@ type VisitorEventResponse struct {
 func (x *VisitorEventResponse) Reset() {
 	*x = VisitorEventResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_iguana_v1_iguana_proto_msgTypes[11]
+		mi := &file_iguana_v1_iguana_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -837,7 +995,7 @@ func (x *VisitorEventResponse) String() string {
 func (*VisitorEventResponse) ProtoMessage() {}
 
 func (x *VisitorEventResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_iguana_v1_iguana_proto_msgTypes[11]
+	mi := &file_iguana_v1_iguana_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -850,7 +1008,7 @@ func (x *VisitorEventResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VisitorEventResponse.ProtoReflect.Descriptor instead.
 func (*VisitorEventResponse) Descriptor() ([]byte, []int) {
-	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{11}
+	return file_iguana_v1_iguana_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *VisitorEventResponse) GetRetcode() uint32 {
@@ -1024,7 +1182,7 @@ func file_iguana_v1_iguana_proto_rawDescGZIP() []byte {
 	return file_iguana_v1_iguana_proto_rawDescData
 }
 
-var file_iguana_v1_iguana_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_iguana_v1_iguana_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_iguana_v1_iguana_proto_goTypes = []any{
 	(*CognitoEventRequest)(nil),   // 0: iguana.v1.CognitoEventRequest
 	(*CognitoEventResponse)(nil),  // 1: iguana.v1.CognitoEventResponse
@@ -1033,37 +1191,43 @@ var file_iguana_v1_iguana_proto_goTypes = []any{
 	(*RandomNoteResponse)(nil),    // 4: iguana.v1.RandomNoteResponse
 	(*PingRequest)(nil),           // 5: iguana.v1.PingRequest
 	(*PingResponse)(nil),          // 6: iguana.v1.PingResponse
-	(*UserGroupHeader)(nil),       // 7: iguana.v1.UserGroupHeader
-	(*UserGroupRequest)(nil),      // 8: iguana.v1.UserGroupRequest
-	(*UserGroupResponse)(nil),     // 9: iguana.v1.UserGroupResponse
-	(*VisitorEventRequest)(nil),   // 10: iguana.v1.VisitorEventRequest
-	(*VisitorEventResponse)(nil),  // 11: iguana.v1.VisitorEventResponse
-	(*timestamppb.Timestamp)(nil), // 12: google.protobuf.Timestamp
+	(*SelectUserRequest)(nil),     // 7: iguana.v1.SelectUserRequest
+	(*SelectUserResponse)(nil),    // 8: iguana.v1.SelectUserResponse
+	(*UserGroupHeader)(nil),       // 9: iguana.v1.UserGroupHeader
+	(*UserGroupRequest)(nil),      // 10: iguana.v1.UserGroupRequest
+	(*UserGroupResponse)(nil),     // 11: iguana.v1.UserGroupResponse
+	(*VisitorEventRequest)(nil),   // 12: iguana.v1.VisitorEventRequest
+	(*VisitorEventResponse)(nil),  // 13: iguana.v1.VisitorEventResponse
+	(*timestamppb.Timestamp)(nil), // 14: google.protobuf.Timestamp
 }
 var file_iguana_v1_iguana_proto_depIdxs = []int32{
-	12, // 0: iguana.v1.CognitoEventResponse.created_at:type_name -> google.protobuf.Timestamp
-	12, // 1: iguana.v1.CognitoEventResponse.last_seen_at:type_name -> google.protobuf.Timestamp
-	12, // 2: iguana.v1.RandomNoteResponse.created_at:type_name -> google.protobuf.Timestamp
-	12, // 3: iguana.v1.RandomNoteResponse.last_viewed_at:type_name -> google.protobuf.Timestamp
-	12, // 4: iguana.v1.UserGroupHeader.created_at:type_name -> google.protobuf.Timestamp
-	12, // 5: iguana.v1.UserGroupHeader.modified_at:type_name -> google.protobuf.Timestamp
-	7,  // 6: iguana.v1.UserGroupResponse.group_header:type_name -> iguana.v1.UserGroupHeader
-	12, // 7: iguana.v1.VisitorEventRequest.time_stamp:type_name -> google.protobuf.Timestamp
-	0,  // 8: iguana.v1.IguanaService.CognitoEvent:input_type -> iguana.v1.CognitoEventRequest
-	5,  // 9: iguana.v1.IguanaService.Ping:input_type -> iguana.v1.PingRequest
-	3,  // 10: iguana.v1.IguanaService.RandomNote:input_type -> iguana.v1.RandomNoteRequest
-	8,  // 11: iguana.v1.IguanaService.UserGroup:input_type -> iguana.v1.UserGroupRequest
-	10, // 12: iguana.v1.IguanaService.VisitorEvent:input_type -> iguana.v1.VisitorEventRequest
-	1,  // 13: iguana.v1.IguanaService.CognitoEvent:output_type -> iguana.v1.CognitoEventResponse
-	6,  // 14: iguana.v1.IguanaService.Ping:output_type -> iguana.v1.PingResponse
-	4,  // 15: iguana.v1.IguanaService.RandomNote:output_type -> iguana.v1.RandomNoteResponse
-	9,  // 16: iguana.v1.IguanaService.UserGroup:output_type -> iguana.v1.UserGroupResponse
-	11, // 17: iguana.v1.IguanaService.VisitorEvent:output_type -> iguana.v1.VisitorEventResponse
-	13, // [13:18] is the sub-list for method output_type
-	8,  // [8:13] is the sub-list for method input_type
-	8,  // [8:8] is the sub-list for extension type_name
-	8,  // [8:8] is the sub-list for extension extendee
-	0,  // [0:8] is the sub-list for field type_name
+	14, // 0: iguana.v1.CognitoEventResponse.created_at:type_name -> google.protobuf.Timestamp
+	14, // 1: iguana.v1.CognitoEventResponse.last_seen_at:type_name -> google.protobuf.Timestamp
+	14, // 2: iguana.v1.RandomNoteResponse.created_at:type_name -> google.protobuf.Timestamp
+	14, // 3: iguana.v1.RandomNoteResponse.last_viewed_at:type_name -> google.protobuf.Timestamp
+	14, // 4: iguana.v1.SelectUserResponse.created_at:type_name -> google.protobuf.Timestamp
+	14, // 5: iguana.v1.SelectUserResponse.last_seen_at:type_name -> google.protobuf.Timestamp
+	14, // 6: iguana.v1.UserGroupHeader.created_at:type_name -> google.protobuf.Timestamp
+	14, // 7: iguana.v1.UserGroupHeader.modified_at:type_name -> google.protobuf.Timestamp
+	9,  // 8: iguana.v1.UserGroupResponse.group_header:type_name -> iguana.v1.UserGroupHeader
+	14, // 9: iguana.v1.VisitorEventRequest.time_stamp:type_name -> google.protobuf.Timestamp
+	0,  // 10: iguana.v1.IguanaService.CognitoEvent:input_type -> iguana.v1.CognitoEventRequest
+	5,  // 11: iguana.v1.IguanaService.Ping:input_type -> iguana.v1.PingRequest
+	3,  // 12: iguana.v1.IguanaService.RandomNote:input_type -> iguana.v1.RandomNoteRequest
+	7,  // 13: iguana.v1.IguanaService.SelectUser:input_type -> iguana.v1.SelectUserRequest
+	10, // 14: iguana.v1.IguanaService.UserGroup:input_type -> iguana.v1.UserGroupRequest
+	12, // 15: iguana.v1.IguanaService.VisitorEvent:input_type -> iguana.v1.VisitorEventRequest
+	1,  // 16: iguana.v1.IguanaService.CognitoEvent:output_type -> iguana.v1.CognitoEventResponse
+	6,  // 17: iguana.v1.IguanaService.Ping:output_type -> iguana.v1.PingResponse
+	4,  // 18: iguana.v1.IguanaService.RandomNote:output_type -> iguana.v1.RandomNoteResponse
+	8,  // 19: iguana.v1.IguanaService.SelectUser:output_type -> iguana.v1.SelectUserResponse
+	11, // 20: iguana.v1.IguanaService.UserGroup:output_type -> iguana.v1.UserGroupResponse
+	13, // 21: iguana.v1.IguanaService.VisitorEvent:output_type -> iguana.v1.VisitorEventResponse
+	16, // [16:22] is the sub-list for method output_type
+	10, // [10:16] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_iguana_v1_iguana_proto_init() }
@@ -1157,7 +1321,7 @@ func file_iguana_v1_iguana_proto_init() {
 			}
 		}
 		file_iguana_v1_iguana_proto_msgTypes[7].Exporter = func(v any, i int) any {
-			switch v := v.(*UserGroupHeader); i {
+			switch v := v.(*SelectUserRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1169,7 +1333,7 @@ func file_iguana_v1_iguana_proto_init() {
 			}
 		}
 		file_iguana_v1_iguana_proto_msgTypes[8].Exporter = func(v any, i int) any {
-			switch v := v.(*UserGroupRequest); i {
+			switch v := v.(*SelectUserResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1181,7 +1345,7 @@ func file_iguana_v1_iguana_proto_init() {
 			}
 		}
 		file_iguana_v1_iguana_proto_msgTypes[9].Exporter = func(v any, i int) any {
-			switch v := v.(*UserGroupResponse); i {
+			switch v := v.(*UserGroupHeader); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1193,7 +1357,7 @@ func file_iguana_v1_iguana_proto_init() {
 			}
 		}
 		file_iguana_v1_iguana_proto_msgTypes[10].Exporter = func(v any, i int) any {
-			switch v := v.(*VisitorEventRequest); i {
+			switch v := v.(*UserGroupRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1205,6 +1369,30 @@ func file_iguana_v1_iguana_proto_init() {
 			}
 		}
 		file_iguana_v1_iguana_proto_msgTypes[11].Exporter = func(v any, i int) any {
+			switch v := v.(*UserGroupResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_iguana_v1_iguana_proto_msgTypes[12].Exporter = func(v any, i int) any {
+			switch v := v.(*VisitorEventRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_iguana_v1_iguana_proto_msgTypes[13].Exporter = func(v any, i int) any {
 			switch v := v.(*VisitorEventResponse); i {
 			case 0:
 				return &v.state
@@ -1223,7 +1411,7 @@ func file_iguana_v1_iguana_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_iguana_v1_iguana_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
