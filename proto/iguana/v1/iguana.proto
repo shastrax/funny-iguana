@@ -10,6 +10,8 @@ service IguanaService {
     rpc Ping(PingRequest) returns (PingResponse) {}
     rpc RandomNote(RandomNoteRequest) returns (RandomNoteResponse) {}
     rpc SelectUser(SelectUserRequest) returns (SelectUserResponse) {}
+    rpc UserRole(UserRoleRequest) returns (UserRoleResponse) {}
+    rpc UserSuspend(UserSuspendRequest) returns (UserSuspendResponse) {}
     rpc UserGroup(UserGroupRequest) returns (UserGroupResponse) {}
     rpc VisitorEvent(VisitorEventRequest) returns (VisitorEventResponse) {}
 }
@@ -126,6 +128,30 @@ message UserGroupResponse {
     string user_uuid = 1;
     uint32 retcode = 2;
     repeated UserGroupHeader group_header = 3;
+}
+
+//
+message UserRoleRequest {
+    string user_uuid = 1;
+    string role = 2;
+}
+
+//
+message UserRoleResponse {
+    string user_uuid = 1;
+    uint32 retcode = 2;
+}
+
+//
+message UserSuspendRequest {
+    string user_uuid = 1;
+    string suspend_flag = 2;
+}
+
+//
+message UserSuspendResponse {
+    string user_uuid = 1;
+    uint32 retcode = 2;
 }
 
 //
