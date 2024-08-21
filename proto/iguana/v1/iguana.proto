@@ -21,8 +21,7 @@ service IguanaService {
 message CognitoEventRequest {
     string key = 1;
     string email = 2;
-    string group = 3;
-    string name = 4;
+    string name = 3;
 }
 
 //
@@ -33,9 +32,8 @@ message CognitoEventResponse {
     google.protobuf.Timestamp last_seen_at = 4;
     bool suspend_flag = 5;
     string email = 6;
-    string group = 7;
-    string name = 8;
-    string role = 9;
+    string name = 7;
+    string role = 8;
 }
 
 //
